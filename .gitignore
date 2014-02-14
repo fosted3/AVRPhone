@@ -1,0 +1,18 @@
+# build castoffs
+*.o
+*.a
+*.lib
+*.out
+*.elf
+*.lst
+*.map
+
+# vim
+*.swo*
+*.swp*
+
+# Eagle backups
+*.s#?
+*.b#?
+*.l#?
+eagle.epf
