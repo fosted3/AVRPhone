@@ -16,3 +16,9 @@
 *.b#?
 *.l#?
 eagle.epf
+
+# Libraries that shouldn't be dragged along
+
+SparkFun-*.l?*
+LilyPad-Wearables.l?*
+dp_devices.?*
