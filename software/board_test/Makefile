@@ -3,6 +3,7 @@ SOURCES=$(PROGRAM).c
 INCLUDE=.
 CC=$(HOME)/toolchains/avr8-gnu-toolchain-linux_x86_64/bin/avr-gcc
 OBJCOPY=$(HOME)/toolchains/avr8-gnu-toolchain-linux_x86_64/bin/avr-objcopy
+OBJDUMP=$(HOME)/toolchains/avr8-gnu-toolchain-linux_x86_64/bin/avr-objdump
 SIZE=$(HOME)/toolchains/avr8-gnu-toolchain-linux_x86_64/bin/avr-size
 AVRDUDE=avrdude
 MMCU=atxmega16a4u
@@ -20,7 +21,7 @@ $(PROGRAM).hex: $(PROGRAM).out
 	$(SIZE) -C $(PROGRAM).out --mcu=$(DEVICE)
 
 $(PROGRAM).lst: $(PROGRAM).hex
-	avr-objdump -h -S $(PROGRAM).out > $(PROGRAM).lst
+	$(OBJDUMP) -h -S $(PROGRAM).out > $(PROGRAM).lst
 
 $(PROGRAM).out: $(SOURCES)
 	$(CC) $(CFLAGS) -o $(PROGRAM).out $(SOURCES) -I$(INCLUDE)
