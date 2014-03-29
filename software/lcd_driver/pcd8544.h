@@ -9,14 +9,16 @@
 #define LCD_PORT PORTC.OUT
 #define LCD_DDR  PORTC.DIR
 
-#define LCD_RST // Reset can be tied to chip rst in a pinch
-#define LCD_CE  PC4 // Enable can be tied gnd
-#define LCD_DC  // Data/Command select
-#define LCD_DIN PC5 // Data
-#define LCD_CLK PC7 // Clock
+#define LCD_RST 1 // Reset can be tied to chip rst in a pinch
+#define LCD_CE  4 // Enable can be tied gnd
+#define LCD_DC  3 // Data/Command select
+#define LCD_DIN 5 // Data
+#define LCD_CLK 7 // Clock
 
-#define LCD_CMD  1
-#define LCD_DATA 0
+#define LCD_MASK (1<<LCD_RST) | (1<<LCD_CE) | (1<< LCD_DC) | (1<<LCD_DIN) | (1<<LCD_CLK)
+
+#define LCD_CMD  0
+#define LCD_DATA 1
 
 // LCD command bases - variables |'d to these
 #define CMD_FUNC  0x20  // function set
@@ -36,7 +38,7 @@
 
 // display control options
 #define DISP_BLANK 0x00 // blank display
-#define DISP_NORM  0x20 // normal display mode
+#define DISP_NORM  0x04 // normal display mode
 #define DISP_TEST  0x01 // all segments on (test) mode
 #define DISP_INV   0x05 // inverted normal mode
 
@@ -44,8 +46,10 @@
 #define LCD_H 48
 #define LCD_W 84
 
+#define LCD_BUFSIZE (48*84/8)
+
 // send 8 bits of data/cmd (cd var) to lcd
-void lcdWrite(uint8_t & data, uint8_t & cd);
+void lcdWrite(uint8_t, uint8_t);
 
 // flush buffers, restart lcd
 void lcdReset();
