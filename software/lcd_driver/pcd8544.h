@@ -57,7 +57,12 @@ void lcdReset();
 // flush buffers, push to lcd
 void lcdClear();
 
-// send entire new buffer to lcd - may be able to offload most of this
-void lcdUpdate(uint8_t *buf);
+// send entire new buffer to lcd
+void lcdUpdate();
+
+// send rect within buffer bounded by args to lcd (x_0,y_0) to (x_f,y_f)
+// will round to full bytes in y-dir
+// initial coords must be > final coords
+void lcdUpdateRange(uint8_t x_0, uint8_t y_0, uint8_t x_f, uint8_t y_f);
 
 #endif // __LCD_H

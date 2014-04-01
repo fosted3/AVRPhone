@@ -1,5 +1,7 @@
 #include "pcd8544.h"
 
+uint8_t lcdBuf[LCD_W][LCD_H];
+
 // set up the SPI hardware, then initialize the pcd8544 and clear the display
 void lcdInit() {
   LCD_DDR |= LCD_MASK;
