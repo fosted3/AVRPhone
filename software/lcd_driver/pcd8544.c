@@ -29,7 +29,7 @@ void lcdClear() {
 }
 
 void lcdUpdate(){
-  lcdUpdateRange(0, 0, LCD_W, LCD_H);
+  lcdUpdateRange(LCD_W, LCD_H, 0, 0);
 }
 
 void lcdUpdateRange(uint8_t x_0, uint8_t y_0, uint8_t x_f, uint8_t y_f){
