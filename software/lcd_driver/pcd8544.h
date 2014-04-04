@@ -46,7 +46,7 @@
 #define LCD_H 48
 #define LCD_W 84
 
-#define LCD_BUFSIZE (48*84/8)
+#define LCD_BUFSIZE 504
 
 // send 8 bits of data/cmd (cd var) to lcd
 void lcdWrite(uint8_t, uint8_t);
@@ -63,6 +63,6 @@ void lcdUpdate();
 // send rect within buffer bounded by args to lcd (x_0,y_0) to (x_f,y_f)
 // will round to full bytes in y-dir
 // initial coords must be > final coords
-void lcdUpdateRange(uint8_t x_0, uint8_t y_0, uint8_t x_f, uint8_t y_f);
+// void lcdUpdateRange(uint8_t x_0, uint8_t y_0, uint8_t x_f, uint8_t y_f);
 
 #endif // __LCD_H

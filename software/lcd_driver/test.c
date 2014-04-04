@@ -1,6 +1,6 @@
 #include "pcd8544.h"
 
-uint8_t lcdBuf[LCD_W][LCD_H];
+uint8_t lcdBuf[LCD_BUFSIZE];
 
 // set up the SPI hardware, then initialize the pcd8544 and clear the display
 void lcdInit() {
@@ -21,7 +21,6 @@ void lcdInit() {
 
 int main() {
   lcdInit();
-  
   for (int index = 0; index < 100; index++) {
     lcdWrite(0x14, LCD_DATA);
     lcdWrite(0x7F, LCD_DATA);
@@ -29,4 +28,7 @@ int main() {
     lcdWrite(0x7F, LCD_DATA);
     lcdWrite(0x14, LCD_DATA);
   } 
+  for(uint16_t p = 0; p < LCD_BUFSIZE; ++p)
+    lcdBuf[p] = 0xAA;
+  lcdUpdate();
 }

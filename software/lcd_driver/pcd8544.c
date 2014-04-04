@@ -1,6 +1,6 @@
 #include "pcd8544.h"
 
-extern uint8_t **lcdBuf;
+extern uint8_t lcdBuf[LCD_BUFSIZE];
 
 inline void lcdWrite(uint8_t data, uint8_t cd) {
   LCD_PORT &= ~(1<<LCD_CE);
@@ -29,11 +29,16 @@ void lcdClear() {
 }
 
 void lcdUpdate(){
-  lcdUpdateRange(LCD_W, LCD_H, 0, 0);
+  lcdWrite(CMD_YADDR, LCD_CMD);
+  lcdWrite(CMD_XADDR, LCD_CMD);
+  for(uint16_t p = 0; p < LCD_BUFSIZE; ++p)
+    lcdWrite(lcdBuf[p], LCD_DATA);
 }
 
-void lcdUpdateRange(uint8_t x_0, uint8_t y_0, uint8_t x_f, uint8_t y_f){
 
+/*
+TODO FIXME
+void lcdUpdateRange(uint8_t x_0, uint8_t y_0, uint8_t x_f, uint8_t y_f){
   if(y_0 & 0xF8) { // partial byte
     ++y_0;
     y_0>>=3;
@@ -43,8 +48,9 @@ void lcdUpdateRange(uint8_t x_0, uint8_t y_0, uint8_t x_f, uint8_t y_f){
   lcdWrite(CMD_YADDR | y_0, LCD_CMD);
   lcdWrite(CMD_XADDR | (x_0 & 0x7F), LCD_CMD);
 
-  for(;y_0>y_f;--y_0){
-    for(;x_0>x_f;--x_0)
-      lcdWrite(lcdBuf[x_0][y_0], LCD_DATA);
-  }
-}
+//  for(;y_0<y_f;++y_0){
+    for(;x_0<x_f;++x_0)
+      //lcdWrite(lcdBuf[x_0][y_0], LCD_DATA);
+      lcdWrite(0xFF, LCD_DATA);
+ // }
+} */
