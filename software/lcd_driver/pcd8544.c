@@ -3,23 +3,23 @@
 extern uint8_t lcdBuf[LCD_BUFSIZE];
 
 inline void lcdWrite(uint8_t data, uint8_t cd) {
-  LCD_PORT &= ~(1<<LCD_CE);
+  LCD_PORT.OUT &= ~(1<<LCD_CE);
   // select D/~C mode
   if(cd == LCD_CMD)
-    LCD_PORT &= ~(1<<LCD_DC);
+    LCD_PORT.OUT  &= ~(1<<LCD_DC);
   else
-    LCD_PORT |= (1<<LCD_DC);
+    LCD_PORT.OUT|= (1<<LCD_DC);
 
   LCD_SPI.DATA = data;
   // wait for last xfer to complete
   while(!(LCD_SPI.STATUS & (1<<7)));
-  LCD_PORT |= (1<<LCD_CE);
+  LCD_PORT.OUT |= (1<<LCD_CE);
 }
 
 void lcdReset(){
-  LCD_PORT &= ~(1<<LCD_RST);
+  LCD_PORT.OUT &= ~(1<<LCD_RST);
   _delay_ms(1);
-  LCD_PORT |= (1<<LCD_RST);
+  LCD_PORT.OUT |= (1<<LCD_RST);
 }
 
 void lcdClear() {

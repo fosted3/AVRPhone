@@ -6,8 +6,7 @@
 #include <stdint.h>
 
 #define LCD_SPI  SPIC
-#define LCD_PORT PORTC.OUT
-#define LCD_DDR  PORTC.DIR
+#define LCD_PORT PORTC
 
 #define LCD_RST 1 // Reset can be tied to chip rst in a pinch
 #define LCD_CE  4 // Enable can be tied gnd
