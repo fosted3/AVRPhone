@@ -2,7 +2,7 @@
 
 inline void writeSD(uint8_t d){
   SD_SPI.DATA = d;
-  (!(SD.STATUS & (1<<7)));
+  while(!(SD_SPI.STATUS & (1<<7)));
 }
 
 inline void selectSD(){
@@ -10,10 +10,10 @@ inline void selectSD(){
 }
 
 inline void deselectSD(){
-  SD_PORT.OUT =| (1<<SD_CS);
+  SD_PORT.OUT |= (1<<SD_CS);
   // clock out dummy byte so card will release MISO
   SD_SPI.DATA = 0xFF;
-  while(!(SD.STATUS & (1<<7)));
+  while(!(SD_SPI.STATUS & (1<<7)));
 }
 
 void sendCommand(uint8_t cmd, uint32_t arg){
