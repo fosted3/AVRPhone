@@ -4,7 +4,7 @@ uint8_t lcdBuf[LCD_BUFSIZE];
 
 // set up the SPI hardware, then initialize the pcd8544 and clear the display
 void lcdInit() {
-  LCD_DDR |= LCD_MASK;
+  LCD_PORT.DIR |= LCD_MASK;
   LCD_SPI.CTRL = 0x52;
 
   lcdReset();
