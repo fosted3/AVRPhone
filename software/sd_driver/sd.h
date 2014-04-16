@@ -34,3 +34,5 @@
 #define CMD25	  25		  /* WRITE_MULTIPLE_BLOCK */
 #define CMD55	  55		  /* APP_CMD */
 #define CMD58	  58		  /* READ_OCR */
+
+#endif // __SD_H
