@@ -35,4 +35,15 @@
 #define CMD55	  55		  /* APP_CMD */
 #define CMD58	  58		  /* READ_OCR */
 
+uint8_t tradeByte(uint8_t);
+
+void selectSD();
+
+void deselectSD();
+
+uint8_t sendCommand(uint8_t, uint32_t);
+
+int8_t initSD();
+
+
 #endif // __SD_H
